@@ -10,6 +10,7 @@ from bokeh.application import Application
 from bokeh.application.handlers import FunctionHandler
 import numpy as np
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -117,10 +118,10 @@ def index():
         date.on_change('value',update_date)
 
     handler = FunctionHandler(modify_doc)
-    app = Application(handler)
+    appe = Application(handler)
     output_file("index.html")
-    show(app)
-    return show(app)
+    script,div = embed.components(appe)
+    return render_template('bokeh.html',script=script,div=div)
 
 @app.route('/about')
 def about():
